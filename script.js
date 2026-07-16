@@ -118,13 +118,13 @@ const quizQuestions = [
     }
 ];
 
-let typed = new Typed(enemyText, {
+/*let typed = new Typed(enemyText, {
     strings: ['Вечер в хату'],
     smartBackspace: false,
-    typeSpeed: 30,
+    typeSpeed: 65,
     showCursor: false,
     //loop = false
-})
+})*/
 
 
 /*function changeEnemyText (newText) {
@@ -189,7 +189,7 @@ function changeText(text) {
     currentTypedInstance = new Typed(enemyText, {
         strings: text,
         smartBackspace: false,
-        typeSpeed: 30,
+        typeSpeed: 20,
         showCursor: false,
     });
 }
@@ -264,9 +264,9 @@ async function startQuiz() {
 
     // Проверяем, как закончилась игра
     if (gameOverByTimer) {
-        changeText(['Время вышло! Ты проиграл. шкала злости переполнилась/опустела.']);
+        changeText(['Дегенерат, твое время вышло']);
     } else {
-        changeText(['Поздравляем! Вы прошли викторину!']);
+        changeText(['Поздравляю! Ты прошел проверку!']);
     }
 }
 

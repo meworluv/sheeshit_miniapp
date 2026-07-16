@@ -1,4 +1,124 @@
+/* Обнуляем отступы и фиксируем высоту экрана */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #17212b; /* Темная тема Telegram */
+    color: #fff;
+    font-family: sans-serif;
+    overflow: hidden; /* Запрещаем случайную прокрутку */
+}
+
+/* Делаем body главным флекс-контейнером */
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* 1. Секция с картинкой */
+.enemy {
+    flex: 0 0 35%; /* Занимает ровно 35% высоты экрана, не сжимается */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.enemy img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Картинка не растягивается и сохраняет пропорции */
+    border-radius: 12px;
+}
+
+/* 2. Главный контейнер для игры (Текст + Кнопки) */
+main {
+    flex: 1 1 auto; /* Занимает ВСЁ оставшееся пространство между картинкой и таймером */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* Контейнер с текстом вопроса */
+.text-container {
+    flex: 0 0 auto;
+    text-align: center;
+    font-size: 32px;         /* Увеличили размер текста вопроса (был 24px) */
+    font-weight: bold;       /* Сделали текст жирнее, чтобы лучше читался */
+    line-height: 1.4;
+    padding: 15px;
+    min-height: 90px;        /* Увеличили минимальную высоту под крупный текст */
+}
+
+/* 3. Секция кнопок */
+.buttons-container {
+    width: 100%;
+}
+
+.buttons-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;             /* Должно быть 100% */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;               /* Увеличили расстояние между кнопками */
+}
+
+.buttons-container li {
+    width: 100%;             /* Должно быть 100% */
+    display: flex;
+    justify-content: center;
+}
+
+/* Красивые мобильные кнопки */
+.buttons-container button {
+    width: 100%;             /* Кнопка занимает всю доступную ширину li */
+    padding: 24px 15px;      /* Увеличили внутренние отступы (было 14px) — кнопки станут намного выше/толще */
+    font-size: 28px;         /* Крупный, жирный текст внутри кнопок (был 18px) */
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;     /* Чуть больше скруглили углы для современного вида */
+    background-color: #2b5278; 
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Сделали тень глубже, чтобы кнопки казались объемными */
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.buttons-container button:active {
+    background-color: #213f5c; 
+    transform: scale(0.98);  /* Кнопка визуально слегка вдавливается при клике */
+}
+
+/* 4. Навигация с таймером в самом низу экрана */
+nav {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.timer-container {
+    width: 100%;
+    height: 12px;
+    background-color: #24303f;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#timer-bar {
+    width: 100%;
+    height: 100%;
+    background-color: crimson;
+    transition: width 0.2s linear;
+}
+/*body {
     margin: 0;
     height: 100%;
     width: 100%;
@@ -56,20 +176,21 @@ main {
     font-size: 300%;
 }
 .timer-container {
-    width: 100%;             /* Шкала занимает всю ширину экрана/родителя */
-    height: 20px;            /* Обязательно задаем высоту! */
-    background-color: #ddd;  /* Серый цвет для пустой шкалы */
-    border-radius: 10px;     /* Скругление углов (по желанию) */
-    overflow: hidden;        /* Чтобы полоса не вылезала за скругления */
-    margin-bottom: 20px;     /* Отступ до текста вопроса */
+    width: 100%;              Шкала занимает всю ширину экрана/родителя 
+    /*height: 20px;             Обязательно задаем высоту! 
+    /*background-color: #ddd;   Серый цвет для пустой шкалы 
+    /*border-radius: 10px;      Скругление углов (по желанию) 
+    /*overflow: hidden;         Чтобы полоса не вылезала за скругления 
+    /*margin-bottom: 20px;      Отступ до текста вопроса 
 }
 
 #timer-bar {
-    width: 100%;             /* Изначально шкала заполнена на 100% */
-    height: 100%;            /* Занимает всю высоту контейнера */
-    background-color: crimson; /* Цвет шкалы (красный) */
-    transition: width 0.2s ease-out; /* Плавное изменение длины */
-}
+    width: 100%;              Изначально шкала заполнена на 100% 
+    height: 100%;             Занимает всю высоту контейнера 
+    background-color: crimson;  Цвет шкалы (красный) 
+    transition: width 0.2s ease-out;  Плавное изменение длины 
+} 
+
 /*nav {
     display: grid;
     grid-auto-flow: column;
