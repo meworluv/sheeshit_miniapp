@@ -55,8 +55,22 @@ main {
     height: 100%;
     font-size: 300%;
 }
+.timer-container {
+    width: 100%;             /* Шкала занимает всю ширину экрана/родителя */
+    height: 20px;            /* Обязательно задаем высоту! */
+    background-color: #ddd;  /* Серый цвет для пустой шкалы */
+    border-radius: 10px;     /* Скругление углов (по желанию) */
+    overflow: hidden;        /* Чтобы полоса не вылезала за скругления */
+    margin-bottom: 20px;     /* Отступ до текста вопроса */
+}
 
-nav {
+#timer-bar {
+    width: 100%;             /* Изначально шкала заполнена на 100% */
+    height: 100%;            /* Занимает всю высоту контейнера */
+    background-color: crimson; /* Цвет шкалы (красный) */
+    transition: width 0.2s ease-out; /* Плавное изменение длины */
+}
+/*nav {
     display: grid;
     grid-auto-flow: column;
     justify-items: start;
@@ -76,4 +90,4 @@ nav {
 .nav-button img {
     width: 50%;
     height: 50%;
-}
+}*/
